@@ -11,10 +11,12 @@ services:
       - MYSQL_PASSWORD=password
     expose:
       - 3306
-      - 33060
   app:
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    image: kiro237/node-skeleton:v1
     depends_on:
       - mysql
-    image: docker.io/sherifemad21/example:node
     ports:
       - 3000:3000

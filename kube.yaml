@@ -1,0 +1,95 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-skeleton
+  labels:
+    app: node-skeleton
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-skeleton
+  template:
+    metadata:
+      labels:
+        app: node-skeleton
+    spec:
+      containers:
+        - name: node-skeleton
+          image: kiro237/node-skeleton:v1
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MYSQL_HOST
+              value: mysql
+            - name: MYSQL_USER
+              value: username
+            - name: MYSQL_PASSWORD
+              value: password
+            - name: MYSQL_DATABASE
+              value: db
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-skeleton
+spec:
+  selector:
+    app: node-skeleton
+  ports:
+    - protocol: TCP
+      port: 3000
+      nodePort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:5.7
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: password
+            - name: MYSQL_DATABASE
+              value: db
+            - name: MYSQL_USER
+              value: username
+            - name: MYSQL_PASSWORD
+              value: password
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  selector:
+    app: mysql
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306

@@ -16,7 +16,9 @@ app.use(function(req, res, next) {
 var myController = require('./controllers/myController');
 
 //creating the route for the controller
-app.use('/myroute', myController);
+app.get('/', ()=>{
+  console.log("got get request");
+});
 
 
 module.exports = app;
