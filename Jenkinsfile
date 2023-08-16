@@ -13,6 +13,7 @@ pipeline {
             }
             steps {
                 echo 'Building the app'
+                sh 'apt-get update'
                 sh '''docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=db
                 -e MYSQL_USER=username -e MYSQL_PASSWORD=password -d mysql:5.7'''
                 sh 'sleep 30'
