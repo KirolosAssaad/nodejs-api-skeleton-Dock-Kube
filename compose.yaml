@@ -15,7 +15,7 @@ services:
     # build:
     #   context: .
     #   dockerfile: Dockerfile
-    image: kiro237/node-skeleton:v1
+    image: kiro237/node-skeleton:v2
     depends_on:
       - mysql
     ports:
