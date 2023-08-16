@@ -12,7 +12,7 @@ pipeline {
         stage('build') {
             agent {
                 docker {
-                    image 'node:17.0.1'
+                    image 'node:20-alpine3.17'
                 }
             }
             steps {
