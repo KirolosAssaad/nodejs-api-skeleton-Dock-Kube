@@ -4,7 +4,7 @@ pipeline {
         stage('launch db') {
             steps {
                 echo 'Building the app'
-                sh '''docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=db
+                sh '''docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=db \
                 -e MYSQL_USER=username -e MYSQL_PASSWORD=password -d mysql:5.7'''
                 sh 'sleep 30'
                 // sh 'npm install --force'
