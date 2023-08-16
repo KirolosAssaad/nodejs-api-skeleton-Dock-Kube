@@ -16,9 +16,6 @@ pipeline {
             agent {
                 docker {
                     image 'node:17.0.1'
-                    args '-p 3000:3000'
-                    args '-v /var/run/docker.sock:/var/run/docker.sock'
-                    args '-v /usr/bin/docker:/usr/bin/docker'
                 }
             }
             steps {
