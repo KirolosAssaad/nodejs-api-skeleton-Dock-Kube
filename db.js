@@ -7,7 +7,7 @@ function connectToDatabase() {
     user: process.env.MYSQL_USER || "username",
     password: process.env.MYSQL_PASSWORD || "password",
     database: process.env.MYSQL_DATABASE || "db",
-    port: process.env.MYSQL_PORT || 3306,
+    port: process.env.MYSQL_PORT || 3307,
   });
 
   con.connect(function (err) {
