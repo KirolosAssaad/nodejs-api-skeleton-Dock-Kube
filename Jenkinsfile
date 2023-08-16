@@ -17,7 +17,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'sudo chown -R 131:140 "/.npm"'
+                sh 'chown -R 131:140 "/.npm"'
                 sh 'Kirolos237'
                 sh 'npm install --force'
             }
